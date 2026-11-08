@@ -5,7 +5,8 @@ COPY 1_12 .
 RUN apt-get update && apt-get install -y curl \
     && curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
     && apt-get install -y nodejs
-ENV REACT_APP_BACKEND_URL=http://example.com:8080    
+ARG BACKEND_URL=http://localhost:8080
+ENV REACT_APP_BACKEND_URL=${BACKEND_URL}
 RUN npm install \
     && npm run build \
     && npm install -g serve
